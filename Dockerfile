@@ -1,6 +1,6 @@
 FROM python:3.13-slim
 WORKDIR /app
-RUN useradd app
+RUN useradd --create-home app
 COPY requirements.txt .
 RUN pip install -r requirements.txt
 COPY app ./app
