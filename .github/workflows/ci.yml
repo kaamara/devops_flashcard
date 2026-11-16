@@ -29,4 +29,12 @@ jobs:
     steps:
         - uses: actions/checkout@v7
         - name: Build Docker image
-          run: docker build -t my-image:latest .
+          run: docker build -t devops_flashcard:latest .
+        - name: Run Trivy vulnerability scanner
+          uses: aquasecurity/trivy-action@v0.36.0
+          with:
+            image-ref: 'devops_flashcard:latest'
+            format: 'table'
+            exit-code: '1'
+            severity: 'CRITICAL,HIGH'
+            ignore-unfixed: true
